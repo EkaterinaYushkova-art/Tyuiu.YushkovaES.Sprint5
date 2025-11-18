@@ -1,4 +1,5 @@
-﻿using Tyuiu.YushkovaES.Sprint5.Task1.V25.Lib;
+﻿using System.Globalization;
+using Tyuiu.YushkovaES.Sprint5.Task1.V25.Lib;
 namespace Tyuiu.YushkovaES.Sprint5.Task1.V25
 {
     internal class Program
@@ -40,9 +41,16 @@ namespace Tyuiu.YushkovaES.Sprint5.Task1.V25
             {
                 string[] parts = line.Split(';');
                 int x = int.Parse(parts[0]);
-                double y = double.Parse(parts[1]);
+                double y = double.Parse(parts[1].Replace('.', ','), CultureInfo.InvariantCulture);
                 Console.WriteLine($"│ {x,3} │ {y,8:F2} │");
             }
+
+            Console.WriteLine("└─────┴──────────┘");
+
+            // Дополнительная проверка - вывод содержимого файла
+            Console.WriteLine("\nСодержимое файла:");
+            string fileContent = File.ReadAllText(resultPath);
+            Console.WriteLine(fileContent);
 
             Console.ReadKey();
         }

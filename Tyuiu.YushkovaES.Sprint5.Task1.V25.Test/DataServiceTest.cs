@@ -20,29 +20,33 @@ namespace Tyuiu.YushkovaES.Sprint5.Task1.V25.Test
             string[] lines = File.ReadAllLines(path);
             Assert.AreEqual(11, lines.Length);
 
-            // Проверка формата данных
-            foreach (string line in lines)
+            // Проверка правильности последовательности x
+            for (int i = 0; i < lines.Length; i++)
             {
-                string[] parts = line.Split(';');
-                Assert.AreEqual(2, parts.Length);
-                Assert.IsTrue(int.TryParse(parts[0], out int x));
-                Assert.IsTrue(double.TryParse(parts[1], out double y));
+                string[] parts = lines[i].Split(';');
+                int expectedX = -5 + i;
+                int actualX = int.Parse(parts[0]);
+                Assert.AreEqual(expectedX, actualX, $"Ошибка в строке {i}: ожидался x={expectedX}, получен x={actualX}");
             }
         }
 
         [TestMethod]
-        public void CheckDivisionByZero()
+        public void CheckAllValuesExist()
         {
             DataService ds = new DataService();
 
-            // Проверяем точку, где знаменатель близок к нулю: 3x + 1.2 = 0 => x = -0.4
-            // Так как x целые, проверяем соседние значения
-            string path = ds.SaveToFileTextData(-1, 0);
+            string path = ds.SaveToFileTextData(-5, 5);
             string[] lines = File.ReadAllLines(path);
 
-            // Проверяем что нет исключений и все значения вычислены
-            Assert.AreEqual(2, lines.Length);
+            // Проверяем что все значения от -5 до 5 присутствуют
+            for (int i = 0; i <= 10; i++)
+            {
+                int expectedX = -5 + i;
+                string[] parts = lines[i].Split(';');
+                int actualX = int.Parse(parts[0]);
+                Assert.AreEqual(expectedX, actualX);
+            }
+
         }
-    
     }
 }
