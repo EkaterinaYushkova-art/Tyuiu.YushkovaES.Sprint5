@@ -14,7 +14,7 @@ namespace Tyuiu.YushkovaES.Sprint5.Task1.V25.Lib
             for (int x = startValue; x <= stopValue; x++)
             {
                 double result = CalculateFunction(x);
-                sb.AppendLine($"{x};{Math.Round(result, 2).ToString().Replace(',', '.')}");
+                sb.AppendLine($"{Math.Round(result, 2).ToString().Replace(',', '.')}");
             }
 
             File.WriteAllText(path, sb.ToString());
@@ -25,14 +25,13 @@ namespace Tyuiu.YushkovaES.Sprint5.Task1.V25.Lib
         {
             double denominator = 3 * x + 1.2;
 
-            // Проверка деления на ноль (x = -0.4, но так как x целые, проверяем близкие значения)
+            // Проверка деления на ноль
             if (Math.Abs(denominator) < 0.0001)
             {
                 return 0;
             }
 
             // F(x) = (2sin(x))/(3x+1.2) + cos(x) - 7x * 2
-            // Упрощаем: 7x * 2 = 14x
             double part1 = (2 * Math.Sin(x)) / denominator;
             double part2 = Math.Cos(x);
             double part3 = 14 * x;

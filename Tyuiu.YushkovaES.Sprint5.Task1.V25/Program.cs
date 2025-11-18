@@ -36,21 +36,19 @@ namespace Tyuiu.YushkovaES.Sprint5.Task1.V25
             Console.WriteLine("Файл сохранен: " + resultPath);
             Console.WriteLine();
 
+
+
             string[] lines = File.ReadAllLines(resultPath);
+            int x = startValue;
             foreach (string line in lines)
             {
-                string[] parts = line.Split(';');
-                int x = int.Parse(parts[0]);
-                double y = double.Parse(parts[1].Replace('.', ','), CultureInfo.InvariantCulture);
-                Console.WriteLine($"│ {x,3} │ {y,8:F2} │");
+                if (!string.IsNullOrEmpty(line))
+                {
+                    double y = double.Parse(line.Replace('.', ','), CultureInfo.InvariantCulture);
+                    Console.WriteLine($" {y,8:F2} ");
+                    x++;
+                }
             }
-
-            Console.WriteLine("└─────┴──────────┘");
-
-            // Дополнительная проверка - вывод содержимого файла
-            Console.WriteLine("\nСодержимое файла:");
-            string fileContent = File.ReadAllText(resultPath);
-            Console.WriteLine(fileContent);
 
             Console.ReadKey();
         }
