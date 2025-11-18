@@ -14,7 +14,7 @@ namespace Tyuiu.YushkovaES.Sprint5.Task1.V25.Lib
             for (int x = startValue; x <= stopValue; x++)
             {
                 double result = CalculateFunction(x);
-                sb.AppendLine($"{Math.Round(result, 2).ToString().Replace(',', '.')}");
+                sb.AppendLine($"{Math.Round(result, 2)}");
             }
 
             File.WriteAllText(path, sb.ToString());

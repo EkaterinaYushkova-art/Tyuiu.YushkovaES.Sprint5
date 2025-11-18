@@ -32,11 +32,17 @@ namespace Tyuiu.YushkovaES.Sprint5.Task1.V25
             Console.WriteLine("* РЕЗУЛЬТАТ:                                                             *");
             Console.WriteLine("**************************************************************************");
 
+           
+
             string resultPath = ds.SaveToFileTextData(startValue, stopValue);
             Console.WriteLine("Файл сохранен: " + resultPath);
             Console.WriteLine();
 
-
+            // Вывод таблицы на консоль
+            Console.WriteLine("Таблица значений функции:");
+            Console.WriteLine("┌─────┬──────────┐");
+            Console.WriteLine("│  x  │   F(x)   │");
+            Console.WriteLine("├─────┼──────────┤");
 
             string[] lines = File.ReadAllLines(resultPath);
             int x = startValue;
@@ -44,11 +50,13 @@ namespace Tyuiu.YushkovaES.Sprint5.Task1.V25
             {
                 if (!string.IsNullOrEmpty(line))
                 {
-                    double y = double.Parse(line.Replace('.', ','), CultureInfo.InvariantCulture);
+                    double y = double.Parse(line);
                     Console.WriteLine($" {y,8:F2} ");
                     x++;
                 }
             }
+
+            Console.WriteLine("└─────┴──────────┘");
 
             Console.ReadKey();
         }

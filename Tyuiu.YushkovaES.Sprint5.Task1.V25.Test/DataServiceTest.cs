@@ -24,8 +24,7 @@ namespace Tyuiu.YushkovaES.Sprint5.Task1.V25.Test
             // Проверка что все значения являются числами
             foreach (string line in lines)
             {
-                Assert.IsTrue(double.TryParse(line.Replace('.', ','), NumberStyles.Any, CultureInfo.InvariantCulture, out double result));
-
+                Assert.IsTrue(double.TryParse(line, out double result));
             }
         }
     }
