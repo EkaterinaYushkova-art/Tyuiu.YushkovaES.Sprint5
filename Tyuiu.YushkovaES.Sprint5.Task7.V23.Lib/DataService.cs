@@ -113,7 +113,6 @@ namespace Tyuiu.YushkovaES.Sprint5.Task7.V23.Lib
             cleaned = Regex.Replace(cleaned, @"\s+([,!.?;:])", "$1");
             cleaned = Regex.Replace(cleaned, @"([,;:])(?=[.!?])", string.Empty);
             cleaned = Regex.Replace(cleaned, @"([,!.?;:])([A-Za-z0-9])", "$1 $2");
-            cleaned = Regex.Replace(cleaned, @"^[,!.?;:\s]+", string.Empty);
 
             return cleaned.Trim();
         }
